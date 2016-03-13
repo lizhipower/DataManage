@@ -41,6 +41,8 @@ public class ReadExcel {
 
             infoGrade = gradeInfoSet.getGradeInfoSet();
             gradeInfosBook.close();
+            System.out.println("parse Excel successfully");
+
         }
         catch (Exception e) {
             System.out.println("error ReadExcel");

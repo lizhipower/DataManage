@@ -6,8 +6,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.lang.reflect.Array;
 import java.util.*;
 
 import Infomations.InfoClass;
@@ -17,8 +15,6 @@ import org.apache.commons.fileupload.FileItem;
 
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
-
-import util.ConvertJSON;
 
 /**
  * Created by ZhiLI on 2016/3/10.
@@ -38,6 +34,9 @@ public class FileUpload extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         isMultipart = ServletFileUpload.isMultipartContent(request);
         response.setContentType("text/html");
+        response.setCharacterEncoding("utf-8");
+        request.setCharacterEncoding("utf-8");
+
         java.io.PrintWriter out = response.getWriter();
         if ( !isMultipart) {
             out.println("<html>");
@@ -96,9 +95,9 @@ public class FileUpload extends HttpServlet {
             ReadExcel excel = new ReadExcel(this.file.getAbsolutePath());
             Set<InfoClass> infoGradeSet = new HashSet<InfoClass>();
             infoGradeSet = excel.getInfoGrade();
-            String infoGradeJsonArr;
+            System.out.println(infoGradeSet);
             JSONArray jsonArray = new JSONArray();
-            jsonArray.fromObject(infoGradeSet.toArray());
+            jsonArray = JSONArray.fromObject(infoGradeSet.toArray());
 
             System.out.println(jsonArray);
             out.print(jsonArray);

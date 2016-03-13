@@ -20,6 +20,7 @@ public class ReadExcelRow {
         for(int col = 0; col< colNum; col++) {
             cell = sheet.getCell(col, rowNum);
             String cellContent = cell.getContents();
+//            cellContent =
             if (cellContent.equals("")) {
                 cellContent = "need more information";
             }
